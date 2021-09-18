@@ -54,9 +54,3 @@ function searchFocus() {
     }
 }
 
-function searchBlur() {
-	a = document.getElementsByClassName("listElement");
-	 for (i = 0; i < a.length; i++) {
-	a[i].style.display = "";
-    }
-}
