@@ -1,11 +1,13 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title></title>
 </head>
 <body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
+    var name = "iPhone6";
     function loadFile(filePath) {
       var result = null;
       var xmlhttp = new XMLHttpRequest();
@@ -19,22 +21,43 @@
     function processData(allText) {
       var allTextLines = allText.split(/\r\n|\n/);
       var headers = allTextLines[0].split(',');
-      var lines = [];
+      var lines = [
+        ["Element", "Percentage"]
+      ];
 
       for (var i=1; i<allTextLines.length; i++) {
           var data = allTextLines[i].split(',');
           if (data.length == headers.length) {
 
-              var tarr = [];
               for (var j=0; j<headers.length; j++) {
-                  tarr.push(headers[j]+":"+data[j]);
+                  lines.push([headers[j], parseFloat(data[j])]);
               }
-              lines.push(tarr);
           }
+          alert(lines);
+          return lines;
       }
   }
-    var data = loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/iphone-6-elements.csv");
+    var data = loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/"+name".csv");
     data = processData(data);
+    alert(data);
+    alert(data[0]);
+    alert(data[1]);
+    //Finished file reading--pie chart loading
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var chartData = google.visualization.arrayToDataTable(data);
+      var options = {
+          title: "Elements in " + name,
+          pieSliceText: 'label'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(chartData, options);
+    }
+
 </script>
+  <div id="piechart" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
