@@ -1,0 +1,40 @@
+<<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+   <script type="text/javascript">
+    function loadFile(filePath) {
+      var result = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", filePath, false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        result = xmlhttp.responseText;
+      }
+      return result;
+    }
+    function processData(allText) {
+      var allTextLines = allText.split(/\r\n|\n/);
+      var headers = allTextLines[0].split(',');
+      var lines = [];
+
+      for (var i=1; i<allTextLines.length; i++) {
+          var data = allTextLines[i].split(',');
+          if (data.length == headers.length) {
+
+              var tarr = [];
+              for (var j=0; j<headers.length; j++) {
+                  tarr.push(headers[j]+":"+data[j]);
+              }
+              lines.push(tarr);
+          }
+      }
+  }
+    var data = loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/iphone-6-elements.csv");
+    data = processData(data);
+</script>
+</body>
+</html>

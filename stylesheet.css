@@ -3,6 +3,7 @@ title {
   display: none;
   font-style: oblique;
   font-size:  60;
+
 }
 
 link {
@@ -15,7 +16,6 @@ link {
 
 .topbar {
   color: 33CAFF;
-
 }
 
 /* Add a black background color to the top navigation */
@@ -193,3 +193,4 @@ myInput:focus {
     background-color: white;
     border-radius: 10px;
 }
+
