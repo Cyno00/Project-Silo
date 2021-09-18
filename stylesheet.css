@@ -1,6 +1,9 @@
 
 title {
   display: none;
+  font-style: oblique;
+  font-size:  60;
+
 }
 
 link {
@@ -12,5 +15,182 @@ link {
 }
 
 .topbar {
+  color: 33CAFF;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
   color: white;
 }
+
+/* Search Bar CSS Design*/
+*
+{
+    outline: none;
+}
+
+html, body
+{
+    height: 100%;
+    min-height: 100%;
+	background: url(https://i.pinimg.com/564x/88/9b/ed/889bedd335b8e182d936922b771900c8.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body
+{
+    margin: 0;
+    background-color: #000000;
+}
+
+input, button
+{
+    font-family: Nunito;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+#cover {
+    width: fit-content;
+    padding: 20px;
+    background-color: #CCCCCC;
+    border-radius: 20px;
+    margin: 20px;
+}
+
+form
+{
+    height: 96px;
+}
+
+input[type="text"]
+{
+    width: 100%;
+    height: 96px;
+    font-size: 50px;
+    line-height: 1;
+}
+
+input[type="text"]::placeholder
+{
+    color: #3c7a36;
+}
+
+button
+{
+    position: relative;
+    display: block;
+    width: 84px;
+    height: 96px;
+    cursor: pointer;
+}
+
+button span
+{
+    position: absolute;
+    top: 68px;
+    left: 43px;
+    display: block;
+    width: 45px;
+    height: 15px;
+    background-color: transparent;
+    border-radius: 10px;
+    transform: rotateZ(52deg);
+    transition: 0.5s ease all;
+}
+
+button span:before, button span:after
+{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 45px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    transform: rotateZ(0);
+    transition: 0.5s ease all;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 295px 12px 20px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  height: fit-content;
+}
+
+myInput:focus {
+	outline: 3px solid #ddd;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  width: 500px;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.dropdown-content p {
+    color: black;
+    margin: 10px 16px;
+    padding: 2px 2px;
+    text-decoration: none;
+    display: block;
+    width: fit-content;
+}
+
+.dropdown-content p:hover {
+	background-color: #ddd;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.show {display: block;}
+
+#result {
+    background-color: white;
+    border-radius: 10px;
+}
+
