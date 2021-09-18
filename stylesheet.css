@@ -4,7 +4,7 @@
   background-position: 14px 12px;
   background-repeat: no-repeat;
   font-size: 16px;
-  padding: 14px 200px 12px 10px;
+  padding: 14px 295px 12px 10px;
   border: none;
   border-bottom: 1px solid #ddd;
 }
@@ -17,7 +17,7 @@
 }
 
 .dropdown-content {
-  position: absolute;
+  width: 500px;
   background-color: #f6f6f6;
   min-width: 230px;
   overflow: auto;
@@ -26,13 +26,19 @@
 }
 
 .dropdown-content p {
-  color: black;
-  padding: 3px 16px;
-  text-decoration: none;
-  display: block;
+    color: black;
+    margin: 10px 16px;
+    padding: 2px 2px;
+    text-decoration: none;
+    display: block;
+    width: fit-content;
 }
 
-.dropdown-content p:hover {background-color: #ddd;}
+.dropdown-content p:hover {
+	background-color: #ddd;
+	text-decoration: underline;
+	cursor: pointer;
+}
 
 .show {display: block;}
 

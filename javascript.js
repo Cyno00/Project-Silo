@@ -20,3 +20,20 @@ function filterFunction() {
 	
   }
 }
+
+function listClick(elmt) {
+	var result = document.getElementById("result");
+	var id = elmt.id;
+	if (id === "apple") {
+		result.innerHTML = "apple";
+	}
+	else if (id === "samsung") {
+		result.innerHTML = "samsung";
+	}
+	else if (id === "blankMessage") {
+		result.innerHTML = "other";
+	}
+	else {
+		result.innerHTML = "this is a bug";
+	}
+}

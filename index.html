@@ -16,13 +16,13 @@
 
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <p class= "listElement" href="#about">Apple Devices (iPhone, iPad, Mac, etc.)</p>
-    <p class= "listElement" href="#base">Samsung Devices</p>
-    <p class= "listElement" href="#blog">Other Devices</p>
-	<p id = "blankMessage"> My device is not on this list</p>
+    <p class= "listElement" id = "apple" onclick = "listClick(this)">Apple Devices (iPhone, iPad, Mac, etc.)</p>
+    <p class= "listElement" id = "samsung" onclick = "listClick(this)">Samsung Devices</p>
+    <p class= "listElement" onclick = "listClick(this)">Other Devices</p>
+	<p id = "blankMessage" onclick = "listClick(this)"> My device is not on this list</p>
   </div>
-
-</span>
+  
+  <p id = "result"></p>
 
 </body>
 </html>
