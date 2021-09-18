@@ -27,21 +27,26 @@
 
       for (var i=1; i<allTextLines.length; i++) {
           var data = allTextLines[i].split(',');
+          var leftover = 100.0;
           if (data.length == headers.length) {
 
               for (var j=0; j<headers.length; j++) {
-                  lines.push([headers[j], parseFloat(data[j])]);
+                var num = parseFloat(data[j]);
+                if(num > 0.5) {
+                  leftover-=num;
+                  lines.push([headers[j], num]);
+                }
+                else {
+                  lines.push(["Others", leftover]);
+                  break;
+                }
               }
           }
-          alert(lines);
           return lines;
       }
   }
     var data = loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/"+name+".csv");
     data = processData(data);
-    alert(data);
-    alert(data[0]);
-    alert(data[1]);
     //Finished file reading--pie chart loading
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
