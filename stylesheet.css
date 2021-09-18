@@ -79,11 +79,13 @@ input, button
 }
 
 #cover {
+    margin-top: 20px;
     width: fit-content;
     padding: 20px;
     background-color: #CCCCCC;
     border-radius: 20px;
-    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form
@@ -195,5 +197,13 @@ myInput:focus {
     background-color: white;
     border-radius: 10px;
 	max-width: 496px;
+}
+
+#container {
+	margin: auto;
+	max-width: 1000px;
+	background-color: rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	border-radius: 10px;
 }
 
