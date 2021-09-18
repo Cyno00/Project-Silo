@@ -170,15 +170,17 @@ myInput:focus {
   border: 1px solid #ddd;
   z-index: 1;
   border-radius: 10px;
+  max-height: 200px;
 }
 
 .dropdown-content p {
     color: black;
-    margin: 10px 16px;
-    padding: 2px 2px;
+	margin: 0px 0px;
+    padding: 12px 18px;
     text-decoration: none;
     display: block;
-    width: fit-content;
+    width: auto;
+	height: auto;
 }
 
 .dropdown-content p:hover {
@@ -192,5 +194,6 @@ myInput:focus {
 #result {
     background-color: white;
     border-radius: 10px;
+	max-width: 496px;
 }
 
