@@ -1,3 +1,9 @@
+a = document.getElementsByClassName("listElement");
+for (i = 0; i < a.length; i++) {
+	a[i].style.display = "none";
+}
+
+
 function filterFunction() {
   var count = 0; 
   var input, filter, ul, li, a, i;
@@ -39,4 +45,18 @@ function listClick(elmt) {
 	else {
 		result.innerHTML = "this is a bug";
 	}
+}
+
+function searchFocus() {
+	a = document.getElementsByClassName("listElement");
+	 for (i = 0; i < a.length; i++) {
+	a[i].style.display = "";
+    }
+}
+
+function searchBlur() {
+	a = document.getElementsByClassName("listElement");
+	 for (i = 0; i < a.length; i++) {
+	a[i].style.display = "";
+    }
 }

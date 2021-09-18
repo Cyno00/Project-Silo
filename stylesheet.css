@@ -9,7 +9,9 @@
   border-bottom: 1px solid #ddd;
 }
 
-#myInput:focus {outline: 3px solid #ddd;}
+myInput:focus {
+	outline: 3px solid #ddd;
+}
 
 .dropdown {
   position: relative;
