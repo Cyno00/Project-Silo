@@ -1,28 +1,47 @@
-<!DOCTYPE html>
-<html>
-<title>HackMIT 2021</title>
+<!DOCTYPE html>	
+<html lang="eng">
+<titlle style="display:none">HackMIT 2021</titlle>
 <meta charset="UTF-8">
-<meta name="HackMit2021" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
 <style>
 	body {font-family: "Times New Roman", Georgia, Serif;}
 	h1, h2, h3, h4, h5, h6 {
  	 font-family: "Playfair Display";
-   letter-spacing: 5px;
-</style> 
-<script src="javascript.js"></script>
-
+  	letter-spacing: 5px;  	
+</style>
 <body>
 
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <p class= "listElement" id = "apple" onclick = "listClick(this)">Apple Devices (iPhone, iPad, Mac, etc.)</p>
-    <p class= "listElement" id = "samsung" onclick = "listClick(this)">Samsung Devices</p>
-    <p class= "listElement" onclick = "listClick(this)">Other Devices</p>
-	<p id = "blankMessage" onclick = "listClick(this)"> My device is not on this list</p>
-  </div>
-  
-  <p id = "result"></p>
+<!-- Navigation Bar -->
+<div class = "topnav">
+	    <a href="#" class="biggreenthing">Plan(t)net</a>
+    	<a href="#About" class="biggreenthing">About</a>
+		<a href="#" class="biggreenthing">Reference</a>    			  
+		<a href="#" class="biggreenthing">Further Resources</a>
+ 	</div>
 
+
+<!-- Header -->
+<header class="container" style="max-width:1600px;min-width:500px" id="home"> 
+	<img class="treepic" src="https://i.pinimg.com/564x/88/9b/ed/889bedd335b8e182d936922b771900c8.jpg" alt="Tree Background">
+	 <div id="cover">
+  <form method="get" action="">
+    <div class="tb">
+      <div class="td"><input type="text" placeholder="Find Your Device..." required></div>
+      <div class="td" id="s-cover">
+        <button type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</header>
+	
+<div class="About">
+	<h2>About the Project</h2>
+	<p>Lorem Ipsum Something</p>
+</div>
 </body>
 </html>
