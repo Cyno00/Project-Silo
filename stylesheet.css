@@ -1,1 +1,16 @@
 
+title {
+  display: none;
+}
+
+link {
+  display: none;
+}
+
+.right {
+  text-align:  right;
+}
+
+.topbar {
+  color: white;
+}
