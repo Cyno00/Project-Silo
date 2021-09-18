@@ -5,12 +5,6 @@
   <title></title>
 </head>
 <body>
-
-</body>
-</html>
-<head>
-</head>
-<body>
    <script type="text/javascript">
     function loadFile(filePath) {
       var result = null;
@@ -42,9 +36,8 @@
   }
     var data = loadFile("./data/iphone-6-elements.csv");
     data = processData(data);
-=======
     var data = $.csv.toObjects("https://github.com/Cyno00/HackMIT-2021/blob/main/data/iphone-6-elements.csv");
->>>>>>> Stashed changes
     alert(data);
 </script>
 </body>
+</html>
