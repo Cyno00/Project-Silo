@@ -8,6 +8,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
     var name = "iPhone6";
+    var lastVisibleIndex = -1;
     function loadFile(filePath) {
       var result = null;
       var xmlhttp = new XMLHttpRequest();
@@ -27,20 +28,15 @@
 
       for (var i=1; i<allTextLines.length; i++) {
           var data = allTextLines[i].split(',');
-          var leftover = 100.0;
           if (data.length == headers.length) {
-
               for (var j=0; j<headers.length; j++) {
                 var num = parseFloat(data[j]);
-                if(num > 0.5) {
-                  leftover-=num;
-                  lines.push([headers[j], num]);
-                }
-                else {
-                  lines.push(["Others", leftover]);
-                  break;
+                lines.push([headers[j], num]);
+                if(lastVisibleIndex == -1 && num < 1) {
+                  lastVisibleIndex = j-1;
                 }
               }
+
           }
           return lines;
       }
@@ -55,13 +51,20 @@
       var chartData = google.visualization.arrayToDataTable(data);
       var options = {
           title: "Elements in " + name,
-          pieSliceText: 'label'
+          pieSliceText: 'label',
+          sliceVisibilityThreshold: .01
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(chartData, options);
-    }
+        google.visualization.events.addListener(chart, 'onmouseover', onmouseover);
 
+          function onmouseover() {
+            alert('naughty naughty');
+          }
+
+    }
+    
 </script>
   <div id="piechart" style="width: 900px; height: 500px;"></div>
 </body>
