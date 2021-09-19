@@ -74,6 +74,10 @@
 </head>
   <a id="button"></a>
 <body>
+  <div id="piechart" style="width: 900px; height: 500px;"></div>
+  <div id="hidden_div" style="display:none"></div>
+  <div id="sections"> </div>
+  <div id="otherSections"> </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
@@ -105,9 +109,11 @@
           elements.set(data[0], tarr);
         }
       }
-
+      var tooltipImg;
     processData(loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/bruh.csv"));
     var leftOverData = [];
+    var inner1 = "";
+    var inner2 = "";
     function processPieChartData(allText) {
       var allTextLines = allText.split(/\r\n|\n/);
       var headers = allTextLines[0].split(',');
@@ -120,15 +126,25 @@
                 var num = parseFloat(data[j]);
                 if(num > 1) {
                   //var tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
-                  var toolTipLink = '<a "href =#"' +headers[j] + '">See more</a>';
+                  var toolTipLink = '<a href ="#section' + j + '">See more</a>';
                   leftOver -= num;
+                  var paragraphText = "Found in " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2];
+                  inner1 += '<a id="section'+j+'"><h2 id="heading'+j+'">' + headers[j] + ' </h2><p id="paragraph'+j+'">' + paragraphText + ' </p></a>'
                   lines.push([headers[j], num, "Contained in: " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + toolTipLink]);
                 }
                 else {
-                  var toolTipLink = '<a "href =#Others">See more</a>';
+                  var toolTipLink = '<a "href =#section' + j + '">See more</a>';
+                  var section = "section" + j;
+                  var heading = "heading" + j;
+                  inner1 += '<a id="'+section + '"><h1> Other elements</h1></a>';
                   lines.push(["Other", leftOver, "<br>" + toolTipLink]);
                   for(var k = j+1; k < headers.length; k++) {
                     num = parseFloat(data[k]);
+                    var section = "section"+k;
+                    var heading = "heading"+k;
+                    var paragraph = "paragraph"+k;
+                    var paragraphText = "Found in " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + elements.get(headers[k])[2];
+                    inner2 += '<a id="section'+j+'"><h2 id="heading'+k+'">' + headers[k] + ' </h2><p id="paragraph'+k+'">' + paragraphText + ' </p></a>'
                     leftOverData.push([headers[k], num, "Contained in: " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + toolTipLink]);
                   }
                   break;
@@ -163,7 +179,7 @@
 
       google.visualization.events.addListener(tooltipChart, 'ready', function() {
 
-        var tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
+        tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
         data[data.length-1][2] = tooltipImg + data[data.length-1][2];
       });
 
@@ -191,6 +207,26 @@
 
         chart.draw(chartData, options);
     }
+    function drawChart2() {
+      var toolTipData = new google.visualization.DataTable();
+      var tooltipOptions = {
+        title: "Other Elements in " + name,
+        pieSliceText: 'label'
+      }
+      toolTipData.addColumn('string', "Element");
+      toolTipData.addColumn('number', "Percentage");
+      toolTipData.addColumn({type: 'string', role: 'tooltip'});
+      toolTipData.addRows(leftOverData);
+
+      var view = new google.visualization.DataView(toolTipData);
+
+      var hiddenDiv = document.getElementById('hidden_div');
+      var tooltipChart = new google.visualization.PieChart(hiddenDiv);
+    }
+    //Load image in other section
+    document.getElementById("sections").innerHTML = inner1;
+    google.charts.setOnLoadCallback(drawChart2);
+    document.getElementById("otherSections").innerHTML = inner2;
 
     //Scroll to top button
     var btn = $('#button');
@@ -210,7 +246,5 @@ btn.on('click', function(e) {
 
 
 </script>
-  <div id="piechart" style="width: 900px; height: 500px;"></div>
-  <div id="hidden_div" style="display:none"></div>
 </body>
 </html>
