@@ -88,8 +88,31 @@
       }
       return result;
     }
-    var leftOverData = [];
+    var elements = new Map();
     function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var headers = allTextLines[0].split(',');
+        for(var i = 1; i < allTextLines.length; i++) {
+          var data = allTextLines[i].split(',');
+          alert(allTextLines[i]);
+          var j = 1;
+          var tarr = [];
+          for(; j < data.length; j++) {
+            tarr.push(data[j]);
+          }
+          for(; j < headers.length; j++) {
+            tarr.push("");
+          }
+          elements.set(data[0], tarr);
+          alert(data[0]);
+          alert(elements.get(data[0]));
+        }
+      }
+
+    processData(loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/bruh.csv"));
+    alert(elements.get('Aluminum'));
+    var leftOverData = [];
+    function processPieChartData(allText) {
       var allTextLines = allText.split(/\r\n|\n/);
       var headers = allTextLines[0].split(',');
       var lines = [];
@@ -103,14 +126,14 @@
                   //var tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
                   var toolTipLink = '<a "href =#"' +headers[j] + '">See more</a>'; 
                   leftOver -= num;
-                  lines.push([headers[j], num, "Lorem Ipsum Dolor <br>" + toolTipLink]);
+                  lines.push([headers[j], num, elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2] + "<br>" + toolTipLink]);
                 }
                 else {
                   var toolTipLink = '<a "href =#Others">See more</a>';
                   lines.push(["Other", leftOver, "<br>" + toolTipLink]);
                   for(var k = j+1; k < headers.length; k++) {
                     num = parseFloat(data[k]);
-                    leftOverData.push([headers[k], num, "" + toolTipLink]);
+                    lines.push([headers[k], num, elements.get(headers[k])[1] + "<br>" + elements.get(headers[j])[2] + "<br>" + toolTipLink]);;
                   }
                   break;
                 }
@@ -121,7 +144,8 @@
       }
   }
     var data = loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/"+name+".csv");
-    data = processData(data);
+    data = processPieChartData(data);
+
     //Finished file reading--pie chart loading
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawTooltipChart);
@@ -171,6 +195,7 @@
 
         chart.draw(chartData, options);
     }
+
     //Scroll to top button
     var btn = $('#button');
 
