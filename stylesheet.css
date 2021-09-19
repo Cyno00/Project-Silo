@@ -56,18 +56,13 @@ html, body
 {
     height: 100%;
     min-height: 100%;
-	background: url(https://www.massey.ac.nz/massey/fms/Web%20office/explore/hero%20images/Hero---natural-environment.jpg) no-repeat center center fixed; 
+	background-color: #e0ffc9;
+	/* background: url(https://www.massey.ac.nz/massey/fms/Web%20office/explore/hero%20images/Hero---natural-environment.jpg) no-repeat center center fixed; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: Arial;
-}
-
-body
-{
-    margin: 0;
-    background-color: #000000;
+  font-family: Verdana;
 }
 
 input, button
