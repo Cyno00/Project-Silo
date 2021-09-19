@@ -75,5 +75,5 @@ function updateTrash() {
 	let num = (Date.now()-1632015181779) * 0.0016 + 35762260;
 	let a = document.getElementById("currentWaste");
 	num = parseInt(num);
-	a.innerHTML = "<span id = num>" + num + "</span> metric tons of e-waste was thrown out so far this this year. What can you do to help that?";
+	a.innerHTML = "<span id = num>" + num + "</span> metric tons of e-waste was thrown out so far this this year. What can you do to help?";
 }
