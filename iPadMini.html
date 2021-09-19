@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:400,900,900i" rel="stylesheet">
+  <style>
+#button {
+  display: inline-block;
+  background-color: #26ff26;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s, 
+    opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+#button::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#button:hover {
+  cursor: pointer;
+  background-color: #00dc00;
+}
+#button:active {
+  background-color: #78ff78;
+}
+#button.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Styles for the content section */
+
+.content {
+  width: 77%;
+  margin: 50px auto;
+  font-family: 'Merriweather', serif;
+  font-size: 17px;
+  color: #6c767a;
+  line-height: 1.9;
+}
+@media (min-width: 500px) {
+  .content {
+    width: 43%;
+  }
+  #button {
+    margin: 30px;
+  }
+}
+.content h1 {
+  margin-bottom: -10px;
+  color: #03a9f4;
+  line-height: 1.5;
+}
+.content h3 {
+  font-style: italic;
+  color: #96a2a7;
+}
+</style>
+</head>
+  <a id="button"></a>
+<body>
+  <div id="piechart" style="width: 900px; height: 500px;"></div>
+  <div id="hidden_div" style="display:none"></div>
+  <div id="chart1"></div>
+  <div id="sections"> </div>
+  <div id="piechart2" style="width: 900px; height: 500px;"></div>
+  <div id="otherSections"> </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+    var name = "iPadMini";
+    function loadFile(filePath) {
+      var result = null;
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.open("GET", filePath, false);
+      xmlhttp.send();
+      if (xmlhttp.status==200) {
+        result = xmlhttp.responseText;
+      }
+      return result;
+    }
+    var elements = new Map();
+    function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var headers = allTextLines[0].split(';');
+        for(var i = 1; i < allTextLines.length; i++) {
+          var data = allTextLines[i].split(';');
+          var j = 1;
+          var tarr = [];
+          for(; j < data.length; j++) {
+            tarr.push(data[j]);
+          }
+          for(; j < headers.length; j++) {
+            tarr.push("");
+          }
+          elements.set(data[0], tarr);
+        }
+      }
+      var tooltipImg;
+    processData(loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/bruh.csv"));
+    var leftOverData = [];
+    var inner1 = "";
+    var inner2 = "";
+    function processPieChartData(allText) {
+      var allTextLines = allText.split(/\r\n|\n/);
+      var headers = allTextLines[0].split(',');
+      var lines = [];
+      for (var i=1; i<allTextLines.length; i++) {
+          var data = allTextLines[i].split(',');
+          if (data.length == headers.length) {
+              var leftOver = 100;
+              for (var j=0; j<headers.length; j++) {
+                var num = parseFloat(data[j]);
+                if(num > 1) {
+                  var toolTipLink = "Percentage: " + num +'%<br><a href ="#section' + j + '">See more</a>';
+                  leftOver -= num;
+                  var paragraphText = "Found in " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2];
+                  inner1 += '<a id="section'+j+'"><h2 id="heading'+j+'">' + headers[j] + ' </h2><p id="paragraph'+j+'">' + paragraphText + ' </p></a>'
+                  lines.push([headers[j], num, "Contained in: " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + toolTipLink]);
+                }
+                else {
+                  var toolTipLink = '<a href="#section' + j + '">See more</a>';
+                  inner1 += '<a id="section'+ j + '"><h1> Other elements</h1></a>'
+                  lines.push(["Other", leftOver, "<p> Percentage: " + parseInt(leftOver-num) + "%<br>" + toolTipLink]);
+                  for(var k = j+1; k < headers.length; k++) {
+                    num = parseFloat(data[k]);
+                    var section = "section"+k;
+                    var heading = "heading"+k;
+                    var paragraph = "paragraph"+k;
+                    toolTipLink = "Percentage: " + num +'%<a href ="#section' + k + '">See more</a>';
+                    var paragraphText = "Found in " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + elements.get(headers[k])[2];
+                    inner2 += '<a id="section'+k+'"><h2 id="heading'+k+'">' + headers[k] + ' </h2><p id="paragraph'+k+'">' + paragraphText + ' </p></a>'
+                    leftOverData.push([headers[k], num, "Contained in: " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + toolTipLink]);
+                  }
+                  break;
+                }
+              }
+
+          }
+          return lines;
+      }
+  }
+    var data = loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/"+name+".csv");
+    data = processPieChartData(data);
+
+    //Finished file reading--pie chart loading
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawTooltipChart);
+    google.charts.setOnLoadCallback(drawChart2);
+    function drawTooltipChart() {
+      var toolTipData = new google.visualization.DataTable();
+      var tooltipOptions = {
+        title: "Other Elements in " + name,
+        pieSliceText: 'none'
+      }
+      toolTipData.addColumn('string', "Element");
+      toolTipData.addColumn('number', "Percentage");
+      toolTipData.addColumn({type: 'string', role: 'tooltip'});
+      toolTipData.addRows(leftOverData);
+
+      var view = new google.visualization.DataView(toolTipData);
+
+      var hiddenDiv = document.getElementById('hidden_div');
+      var tooltipChart = new google.visualization.PieChart(hiddenDiv);
+
+      google.visualization.events.addListener(tooltipChart, 'ready', function() {
+
+        tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
+        data[data.length-1][2] = tooltipImg + data[data.length-1][2];
+      });
+
+      tooltipChart.draw(view, tooltipOptions);
+      drawChart();
+    }
+    function drawChart() {
+      var chartData = new google.visualization.DataTable();
+      chartData.addColumn('string', "Element");
+      chartData.addColumn('number', "Percentage");
+      chartData.addColumn({
+        type: 'string',
+        role: 'tooltip',
+        label: 'Tooltip Chart',
+        'p': {'html' : true,trigger:'selection'}
+      });
+      chartData.addRows(data);
+      var options = {
+          title: "Elements in " + name,
+          pieSliceText: 'label',
+          tooltip: {isHtml: true, trigger : "selection"},
+          focusTarget:'category'
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(chartData, options);
+    }
+    function drawChart2() {
+      var toolTipData = new google.visualization.DataTable();
+      var tooltipOptions = {
+        title: "Other Elements in " + name,
+        pieSliceText: 'label',
+        tooltip: {isHtml: true, trigger : "selection"},
+      }
+      toolTipData.addColumn('string', "Element");
+      toolTipData.addColumn('number', "Percentage");
+      toolTipData.addColumn({type: 'string', role: 'tooltip', 'p': {'html' : true,trigger:'selection'}});
+      toolTipData.addRows(leftOverData);
+      var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+      var view = new google.visualization.DataView(toolTipData);
+      chart.draw(toolTipData, tooltipOptions);
+    }
+    //Load image in other section
+    document.getElementById("sections").innerHTML = inner1;
+    document.getElementById("otherSections").innerHTML = inner2;
+
+    //Scroll to top button
+    var btn = $('#button');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
+
+</script>
+</body>
+</html>
