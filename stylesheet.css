@@ -191,7 +191,7 @@ myInput:focus {
 
 #result {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 20px;
 	max-width: 496px;
 }
 
@@ -229,12 +229,19 @@ img {
   flex: 50%;
   border: 2px;
   border-style: solid;
-  margin: 5px;
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: #ffefcb;
+  border-radius: 10px;
 }
 
 #num {
 	font-size: 30px;
 	font-weight: bold;
+}
+
+#currentWaste {
+	text-align: center;
 }
 

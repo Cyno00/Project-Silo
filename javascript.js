@@ -35,13 +35,13 @@ function filterFunction() {
 function listClick(elmt) {
 	var result = document.getElementById("result");
 	var id = elmt.id;
-	result.style.padding = "3px";
-	result.style.margin = "10px 0px 0px 0px";
+	result.style.padding = "5px";
+	result.style.margin = "5px 0px 1px 0px";
 	if (id === "apple") {
 		result.innerHTML = 'Apple devices can be recycled via Apple Trade In, where store credit can be given: <a href="https://www.apple.com/shop/trade-in"> Link </a> <br> <br> There are also many other providers that will accept your device.';
 	}
 	else if (id === "samsung") {
-		result.innerHTML = 'Samsung has many recycle programs at no cost, which can be found <a href="https://www.samsung.com/us/aboutsamsung/sustainability/environment/responsible-recycling/programs/"> here. </a>';
+		result.innerHTML = 'Samsung has many recycle programs at no cost, which can be found <a href="https://www.samsung.com/us/aboutsamsung/sustainability/environment/responsible-recycling/programs/"> here. </a><br> &nbsp;';
 	}
 	else if (id === "google") {
 		result.innerHTML = 'You can recycle most Google devices with their recycling program <a href= "https://store.google.com/us/magazine/recycling?hl=en-US">here.</a> You can also use the trade-in program to recieve store credit when buying a new Pixel.';
@@ -75,5 +75,5 @@ function updateTrash() {
 	let num = (Date.now()-1632015181779) * 0.0016 + 35762260;
 	let a = document.getElementById("currentWaste");
 	num = parseInt(num);
-	a.innerHTML = "<span id = num>" + num + "</span> metric tons of e-waste was thrown out so far this this year.";
+	a.innerHTML = "<span id = num>" + num + "</span> metric tons of e-waste was thrown out so far this this year. What can you do to help that?";
 }
