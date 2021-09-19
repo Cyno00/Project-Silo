@@ -62,7 +62,7 @@ html, body
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: Verdana;
+  font-family: Abel;
 }
 
 input, button
@@ -77,9 +77,9 @@ input, button
 #cover {
     margin-top: 20px;
     width: fit-content;
-    padding: 20px;
-    background-color: #00DD00;
-    border-radius: 20px;
+    padding: 2px;
+    background-color: black;
+    border-radius: 24px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -167,7 +167,7 @@ myInput:focus {
   overflow: auto;
   border: 1px solid #ddd;
   z-index: 1;
-  border-radius: 10px;
+  border-radius: 24px;
   max-height: 200px;
 }
 
@@ -227,6 +227,10 @@ img {
 
 .column {
   flex: 50%;
+  border: 2px;
+  border-style: solid;
+  margin: 5px;
+  background-color: #ffefcb;
 }
 
 #num {
