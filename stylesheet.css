@@ -234,3 +234,8 @@ img {
   flex: 50%;
 }
 
+#num {
+	font-size: 30px;
+	font-weight: bold;
+}
+

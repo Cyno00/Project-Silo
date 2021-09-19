@@ -1,6 +1,7 @@
 var a = document.getElementsByClassName("listElement");
 var result = document.getElementById("result");
 result.style.margin = "0px";
+var inst = setInterval(updateTrash, 588);
 
 
 for (i = 0; i < a.length; i++) {
@@ -68,4 +69,11 @@ function searchBlur() {
 	 for (i = 0; i < a.length; i++) {
 	a[i].style.display = "none";
     }
+}
+
+function updateTrash() {
+	let num = (Date.now()-1632015181779) * 0.0016 + 35762260;
+	let a = document.getElementById("currentWaste");
+	num = parseInt(num);
+	a.innerHTML = "<span id = num>" + num + "</span> metric tons of e-waste was thrown out so far this this year.";
 }
