@@ -127,7 +127,7 @@
               for (var j=0; j<headers.length; j++) {
                 var num = parseFloat(data[j]);
                 if(num > 1) {
-                  var toolTipLink = '<a href ="#section' + j + '">See more</a>';
+                  var toolTipLink = "Percentage: " + num +'%<br><a href ="#section' + j + '">See more</a>';
                   leftOver -= num;
                   var paragraphText = "Found in " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2];
                   inner1 += '<a id="section'+j+'"><h2 id="heading'+j+'">' + headers[j] + ' </h2><p id="paragraph'+j+'">' + paragraphText + ' </p></a>'
@@ -136,13 +136,13 @@
                 else {
                   var toolTipLink = '<a href="#section' + j + '">See more</a>';
                   inner1 += '<a id="section'+ j + '"><h1> Other elements</h1></a>'
-                  lines.push(["Other", leftOver, "<br>" + toolTipLink]);
+                  lines.push(["Other", leftOver, "<p> Percentage: " + parseInt(leftOver-num) + "%<br>" + toolTipLink]);
                   for(var k = j+1; k < headers.length; k++) {
                     num = parseFloat(data[k]);
                     var section = "section"+k;
                     var heading = "heading"+k;
                     var paragraph = "paragraph"+k;
-                    toolTipLink = '<a href ="#section' + k + '">See more</a>';
+                    toolTipLink = "Percentage: " + num +'%<a href ="#section' + k + '">See more</a>';
                     var paragraphText = "Found in " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + elements.get(headers[k])[2];
                     inner2 += '<a id="section'+k+'"><h2 id="heading'+k+'">' + headers[k] + ' </h2><p id="paragraph'+k+'">' + paragraphText + ' </p></a>'
                     leftOverData.push([headers[k], num, "Contained in: " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + toolTipLink]);
