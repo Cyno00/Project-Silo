@@ -94,7 +94,6 @@
         var headers = allTextLines[0].split(',');
         for(var i = 1; i < allTextLines.length; i++) {
           var data = allTextLines[i].split(',');
-          alert(allTextLines[i]);
           var j = 1;
           var tarr = [];
           for(; j < data.length; j++) {
@@ -104,13 +103,10 @@
             tarr.push("");
           }
           elements.set(data[0], tarr);
-          alert(data[0]);
-          alert(elements.get(data[0]));
         }
       }
 
     processData(loadFile("https://raw.githubusercontent.com/Cyno00/HackMIT-2021/main/data/bruh.csv"));
-    alert(elements.get('Aluminum'));
     var leftOverData = [];
     function processPieChartData(allText) {
       var allTextLines = allText.split(/\r\n|\n/);
@@ -124,7 +120,8 @@
                 var num = parseFloat(data[j]);
                 if(num > 1) {
                   //var tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
-                  var toolTipLink = '<a "href =#"' +headers[j] + '">See more</a>'; 
+                  var toolTipLink = '<a "href =#"' +headers[j] + '">See more</a>';
+                  alert(headers[j] + elements.get(headers[j]));
                   leftOver -= num;
                   lines.push([headers[j], num, elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2] + "<br>" + toolTipLink]);
                 }
