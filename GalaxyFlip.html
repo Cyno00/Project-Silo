@@ -155,7 +155,7 @@
                     var section = "section"+k;
                     var heading = "heading"+k;
                     var paragraph = "paragraph"+k;
-                    toolTipLink = "Percentage: " + num +'%<a href ="#section' + k + '">See more</a>';
+                    toolTipLink = "Percentage: " + num +'%<br><a href ="#section' + k + '">See more</a>';
                     var paragraphText = "Found in " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + elements.get(headers[k])[2];
                     inner2 += '<a id="section'+k+'"><h2 id="heading'+k+'">' + headers[k] + ' </h2><p id="paragraph'+k+'">' + paragraphText + ' </p></a>'
                     leftOverData.push([headers[k], num, "Contained in: " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + toolTipLink]);
