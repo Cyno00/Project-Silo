@@ -5,49 +5,86 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="stylesheet.css">
-
 <style>
-	body {font-family: "Times New Roman", Georgia, Serif;}
-	h1, h2, h3, h4, h5, h6 {
- 	 font-family: "Playfair Display";
-  	letter-spacing: 5px;  	
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 </style>
+
 <body>
 
 <!-- Navigation Bar -->
 
 <div class = "topnav">
-	    <a href="#" class="biggreenthing">Plan(t)net</a>
-    	<a href="#About" class="biggreenthing">About</a>
-		<a href="#" class="biggreenthing">Reference</a>    			  
-		<a href="#" class="biggreenthing">Further Resources</a>
- 	</div>
+	    <a href="#">Plan(t)net</a>
+    	<a href="#aboutDiv">About</a>
+		<a href="#referenceDiv">Reference</a>    
+		<a href= dataAnalyzer.html> Elements in Electronics </a>
+ </div>
 
-<!-- Header -->
-<header class="container" style="max-width:1600px;min-width:500px" id="home" > 
+<!-- Main Content -->
 
-<!-- Header -->
-<header class="container" style="max-width:1600px;min-width:500px" id="home"> 
-	 <div id="cover">
+<div id = "container"> 
+
+	<h1 class = "title"> Electronic Recycling: Why It Matters </h1>
+	
+	<p> Smartphones and computers have become indispensible parts of our lives. We use them to learn, to conduct business, or just to watch movies. When you buy a new device, what will you do with your old device? Keep it as a backup? Sell it to a recycling company? Or throw it away? We at [PROJECT NAME] hope that you do anything except throw it away in the trash. </p>
+	
+	<p> Every year, 50 million tons of electornic waste is generated, most of which contain toxic chemicals such as lead, which harms the environment and people who work at the landfill. In order to prevent these materials from being released to the environment, we need to recycle them, which keeps these materials in our devices. </p>
+
+	<p id= currentWaste></p>
+
+	
+	<h4 style = "text-align: center;"> Find a recycle program for your old devices: </h6>
+	
+	<div id="cover" onblur = "searchBlur()">
   
-	<div id="myDropdown" class="dropdown-content">
-		<input type="text" onfocus = "searchFocus()" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-		<p class= "listElement" id = "apple" onclick = "listClick(this)">Apple Devices (iPhone, iPad, Mac, etc.)</p>
-		<p class= "listElement" id = "google" onclick = "listClick(this)">Google Devices (Pixel, Chromebook, etc.) </p>
-		<p class= "listElement" id = "samsung" onclick = "listClick(this)">Samsung Devices (Galaxy phones, tablets, etc.)</p>
-		<p class= "listElement" id = "emptyMessage" onclick = "listClick(this)"> My device is not on this list</p>
+		<div id="myDropdown" class="dropdown-content">
+			<input type="text" onfocus = "searchFocus()" placeholder="Enter device name/manufacturer here to find recycling programs..." id="myInput" onkeyup="filterFunction()">
+			<p class= "listElement" id = "apple" onclick = "listClick(this)">Apple Devices (iPhone, iPad, Mac, etc.)</p>
+			<p class= "listElement" id = "google" onclick = "listClick(this)">Google Devices (Pixel, Chromebook, etc.) </p>
+			<p class= "listElement" id = "samsung" onclick = "listClick(this)">Samsung Devices (Galaxy phones, tablets, etc.)</p>
+			<p class= "listElement" id = "microsoft" onclick = "listClick(this)">Microsoft Devices (XBox, Surface, etc.)</p>
+			<p class= "listElement" id = "emptyMessage" onclick = "listClick(this)"> My device is not on this list</p>
+		</div>
+  
+		<p id = "result"></p>
+		<script src="javascript.js"></script>
 	</div>
-  
-	<p id = "result"></p>
-	<script src="javascript.js"></script>
+	<div id = "saveNumbers" >
+		<div class="row">
+		<div class="column">
+			<p> By choosing to recycle a smartphone, you save approximately </p>	
+			<h1 style = "display: inline-block">75&nbsp;</h1><p style = "display: inline-block">pounds of ore </p>
+			<br>
+			<h1 style = "display: inline-block">26&nbsp;</h1><p style = "display: inline-block">gallons of water</p>
+		</div>
+		<div class="column">
+			<p> By choosing to recycle a laptop or console, you save approximately </p>		
+			<h1 style = "display: inline-block">150&nbsp;</h1><p style = "display: inline-block">pounds of ore </p>
+			<br>
+			<h1 style = "display: inline-block">50&nbsp;</h1><p style = "display: inline-block">gallons of water</p>	
+		</div>
+	</div>	
+	</div>
 	
+	<div id = "facts">
+		<p style = "text-align: center;"> There are more than 75 elements in an iphone, approximately 2/3rds of all the elements in the periodic table! </p> 
+		<img id = "periodicpic" src="https://cdn.technologyreview.com/i/images/iphonecharts2x1108.png?sw=700&cx=19&cy=16&cw=1151&ch=508" alt="Period Table">
+		<p style = "text-align: center;"> This means mining operations must be done on a global scale since some elements are rare and only occur in specific regions. Read more about how these elements work in electronics <a href = dataAnalyzer.html>here.</a></p>
+	<div class="About" id = "aboutDiv">
+		<h2>About the Project</h2>
+		<hr>
+		<p> The process of making any electronics is extremely complex and requires a lot of material. Where does tech companies source their materials? We as consumers are disconnected from the "black box", and make our purchases based on price alone. This helps us distance ourselves from the ugly face of capitalism and industrial society: the exploitation of the natural world and the underpreviledged. Truthfully, the carbon footprint of modern electronics is immense, and so are the ecological and ethical concerns of obtaining tons of minerals like Tin and Cobalt. Through this project, we aim to raise awareness about the many problems that are yet to be solved in the production of consumer electronics, and to provide resources on how to recycle your device as a concrete way for you to save materials/labor and to do your part to keep the Earth livable for the coming years.
+</p>
+	</div>
 </div>
-</header>
+
+<div class="Reference" id = "referenceDiv">
+		<h2>Refrences</h2>
+		<hr>
+		<p> iPhone facts and element composition: <a href = https://www.vice.com/en/article/433wyq/everything-thats-inside-your-iphone> https://www.vice.com/en/article/433wyq/everything-thats-inside-your-iphone</a></p> 
+		<p> Colored periodic table: <a href = https://cdn.technologyreview.com/i/images/iphonecharts2x1108.png?sw=700&cx=19&cy=16&cw=1151&ch=508> https://cdn.technologyreview.com/i/images/iphonecharts2x1108.png?sw=700&cx=19&cy=16&cw=1151&ch=508 </a></p>
+	</div>
 	
-<div class="About">
-	<h2>About the Project</h2>
-	<p>Lorem Ipsum Something</p>
-</div>
 
 </body>
 </html>
