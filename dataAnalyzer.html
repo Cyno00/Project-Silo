@@ -121,7 +121,6 @@
                 if(num > 1) {
                   //var tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
                   var toolTipLink = '<a "href =#"' +headers[j] + '">See more</a>';
-                  alert(headers[j] + elements.get(headers[j]));
                   leftOver -= num;
                   lines.push([headers[j], num, elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2] + "<br>" + toolTipLink]);
                 }
@@ -130,7 +129,8 @@
                   lines.push(["Other", leftOver, "<br>" + toolTipLink]);
                   for(var k = j+1; k < headers.length; k++) {
                     num = parseFloat(data[k]);
-                    lines.push([headers[k], num, elements.get(headers[k])[1] + "<br>" + elements.get(headers[j])[2] + "<br>" + toolTipLink]);;
+                    alert(headers[k] + elements.get(headers[k]));
+                    lines.push([headers[k], num, elements.get(headers[k])[1] + "<br>" + elements.get(headers[k])[2] + "<br>" + toolTipLink]);
                   }
                   break;
                 }
