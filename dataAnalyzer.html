@@ -127,7 +127,6 @@
               for (var j=0; j<headers.length; j++) {
                 var num = parseFloat(data[j]);
                 if(num > 1) {
-                  //var tooltipImg = '<img src ="' + tooltipChart.getImageURI() + '">';
                   var toolTipLink = '<a href ="#section' + j + '">See more</a>';
                   leftOver -= num;
                   var paragraphText = "Found in " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + elements.get(headers[j])[2];
@@ -135,7 +134,7 @@
                   lines.push([headers[j], num, "Contained in: " + elements.get(headers[j])[0] + "<br>" + elements.get(headers[j])[1] + "<br>" + toolTipLink]);
                 }
                 else {
-                  var toolTipLink = '<a "href =#section' + j + '">See more</a>';
+                  var toolTipLink = '<a href="#section' + j + '">See more</a>';
                   inner1 += '<a id="section'+ j + '"><h1> Other elements</h1></a>'
                   lines.push(["Other", leftOver, "<br>" + toolTipLink]);
                   for(var k = j+1; k < headers.length; k++) {
