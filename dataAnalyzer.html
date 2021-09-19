@@ -76,7 +76,9 @@
 <body>
   <div id="piechart" style="width: 900px; height: 500px;"></div>
   <div id="hidden_div" style="display:none"></div>
+  <div id="chart1"></div>
   <div id="sections"> </div>
+  <div id="piechart2" style="width: 900px; height: 500px;"></div>
   <div id="otherSections"> </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -134,17 +136,16 @@
                 }
                 else {
                   var toolTipLink = '<a "href =#section' + j + '">See more</a>';
-                  var section = "section" + j;
-                  var heading = "heading" + j;
-                  inner1 += '<a id="'+section + '"><h1> Other elements</h1></a>';
+                  inner1 += '<a id="section'+ j + '"><h1> Other elements</h1></a>'
                   lines.push(["Other", leftOver, "<br>" + toolTipLink]);
                   for(var k = j+1; k < headers.length; k++) {
                     num = parseFloat(data[k]);
                     var section = "section"+k;
                     var heading = "heading"+k;
                     var paragraph = "paragraph"+k;
+                    toolTipLink = '<a href ="#section' + k + '">See more</a>';
                     var paragraphText = "Found in " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + elements.get(headers[k])[2];
-                    inner2 += '<a id="section'+j+'"><h2 id="heading'+k+'">' + headers[k] + ' </h2><p id="paragraph'+k+'">' + paragraphText + ' </p></a>'
+                    inner2 += '<a id="section'+k+'"><h2 id="heading'+k+'">' + headers[k] + ' </h2><p id="paragraph'+k+'">' + paragraphText + ' </p></a>'
                     leftOverData.push([headers[k], num, "Contained in: " + elements.get(headers[k])[0] + "<br>" + elements.get(headers[k])[1] + "<br>" + toolTipLink]);
                   }
                   break;
@@ -161,6 +162,7 @@
     //Finished file reading--pie chart loading
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawTooltipChart);
+    google.charts.setOnLoadCallback(drawChart2);
     function drawTooltipChart() {
       var toolTipData = new google.visualization.DataTable();
       var tooltipOptions = {
@@ -211,21 +213,19 @@
       var toolTipData = new google.visualization.DataTable();
       var tooltipOptions = {
         title: "Other Elements in " + name,
-        pieSliceText: 'label'
+        pieSliceText: 'label',
+        tooltip: {isHtml: true, trigger : "selection"},
       }
       toolTipData.addColumn('string', "Element");
       toolTipData.addColumn('number', "Percentage");
-      toolTipData.addColumn({type: 'string', role: 'tooltip'});
+      toolTipData.addColumn({type: 'string', role: 'tooltip', 'p': {'html' : true,trigger:'selection'}});
       toolTipData.addRows(leftOverData);
-
+      var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
       var view = new google.visualization.DataView(toolTipData);
-
-      var hiddenDiv = document.getElementById('hidden_div');
-      var tooltipChart = new google.visualization.PieChart(hiddenDiv);
+      chart.draw(toolTipData, tooltipOptions);
     }
     //Load image in other section
     document.getElementById("sections").innerHTML = inner1;
-    google.charts.setOnLoadCallback(drawChart2);
     document.getElementById("otherSections").innerHTML = inner2;
 
     //Scroll to top button
