@@ -15,7 +15,7 @@ function filterFunction() {
   filter = input.value.toUpperCase();
   div = document.getElementById("myDropdown");
   a = document.getElementsByClassName("listElement");
-  var empty = document.getElementById("blankMessage");
+  var empty = document.getElementById("emptyMessage");
   
   for (i = 0; i < a.length; i++) {
     txtValue = a[i].textContent || a[i].innerText;
@@ -23,7 +23,7 @@ function filterFunction() {
       a[i].style.display = "";
 	  count++;
     } else {
-	  if (a[i].id != "blankMessage") {
+	  if (a[i].id != "emptyMessage") {
 		a[i].style.display = "none";
 	  }
     }
@@ -60,5 +60,12 @@ function searchFocus() {
 	a = document.getElementsByClassName("listElement");
 	 for (i = 0; i < a.length; i++) {
 	a[i].style.display = "";
+    }
+}
+
+function searchBlur() {
+	a = document.getElementsByClassName("listElement");
+	 for (i = 0; i < a.length; i++) {
+	a[i].style.display = "none";
     }
 }

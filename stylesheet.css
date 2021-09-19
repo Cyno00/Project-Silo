@@ -145,15 +145,15 @@ button span:before, button span:after
 }
 
 #myInput {
-  box-sizing: border-box;
   background-image: url('searchicon.png');
   background-position: 14px 12px;
   background-repeat: no-repeat;
   font-size: 16px;
-  padding: 14px 295px 12px 20px;
+  padding: 14px 0px 12px 20px;
   border: none;
   border-bottom: 1px solid #ddd;
   height: fit-content;
+  max-width: 440px;
 }
 
 myInput:focus {
@@ -207,5 +207,30 @@ myInput:focus {
 	padding: 20px;
 	border-radius: 10px;
 	backdrop-filter: blur(3px);
+}
+
+h1 {
+	margin: 5px;
+}
+
+.title {
+	text-align: center;
+	font-size: 25px;
+}
+
+img {
+	width: 400px;
+	height: auto;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
 }
 
